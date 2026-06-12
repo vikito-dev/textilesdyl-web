@@ -5,11 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
-    tanstackStart({
-      server: {
-        preset: "vercel",
-      },
-    } as any), // <-- CON ESTO TYPESCRIPT GUARDA SILENCIO
+    tanstackStart(),
     viteReact(),     
     tailwindcss(),
   ],
