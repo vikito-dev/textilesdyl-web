@@ -5,8 +5,12 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
-    tanstackStart(), // Este levanta el servidor SSR y las rutas al mismo tiempo
-    viteReact(),     // Tiene que ir siempre debajo del de Start
+    tanstackStart({
+      server: {
+        preset: "vercel",
+      },
+    } as any), // <-- CON ESTO TYPESCRIPT GUARDA SILENCIO
+    viteReact(),     
     tailwindcss(),
   ],
   resolve: {
