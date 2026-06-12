@@ -1,0 +1,137 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-rose: var(--rose);
+  --color-plum: var(--plum);
+  --color-cream: var(--cream);
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+  /* Brand: artisan plum + gilded thread + cream */
+  --background: oklch(0.985 0.008 70);
+  --foreground: oklch(0.22 0.04 320);
+  --card: oklch(0.99 0.005 70);
+  --card-foreground: oklch(0.22 0.04 320);
+  --popover: oklch(0.99 0.005 70);
+  --popover-foreground: oklch(0.22 0.04 320);
+  --primary: oklch(0.32 0.09 330);
+  --primary-foreground: oklch(0.985 0.008 70);
+  --secondary: oklch(0.94 0.02 60);
+  --secondary-foreground: oklch(0.28 0.06 330);
+  --muted: oklch(0.95 0.015 60);
+  --muted-foreground: oklch(0.5 0.03 320);
+  --accent: oklch(0.78 0.12 75);
+  --accent-foreground: oklch(0.22 0.04 320);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.02 60);
+  --input: oklch(0.92 0.015 60);
+  --ring: oklch(0.78 0.12 75);
+
+  --gold: oklch(0.78 0.13 78);
+  --rose: oklch(0.72 0.13 20);
+  --plum: oklch(0.32 0.09 330);
+  --cream: oklch(0.97 0.018 80);
+}
+
+.dark {
+  --background: oklch(0.16 0.03 320);
+  --foreground: oklch(0.97 0.015 80);
+  --card: oklch(0.2 0.04 325);
+  --card-foreground: oklch(0.97 0.015 80);
+  --popover: oklch(0.2 0.04 325);
+  --popover-foreground: oklch(0.97 0.015 80);
+  --primary: oklch(0.78 0.13 78);
+  --primary-foreground: oklch(0.18 0.03 320);
+  --secondary: oklch(0.26 0.05 325);
+  --secondary-foreground: oklch(0.97 0.015 80);
+  --muted: oklch(0.26 0.04 325);
+  --muted-foreground: oklch(0.72 0.03 80);
+  --accent: oklch(0.78 0.13 78);
+  --accent-foreground: oklch(0.18 0.03 320);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.13 78);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 20% 0%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 100% 30%, color-mix(in oklab, var(--plum) 14%, transparent), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 60%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 25%, transparent);
+}
+
+@utility gold-text {
+  background: linear-gradient(120deg, oklch(0.65 0.14 60), oklch(0.88 0.12 85), oklch(0.65 0.14 60));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@utility weave-bg {
+  background-image:
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--plum) 6%, transparent) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(-45deg, color-mix(in oklab, var(--gold) 8%, transparent) 0 1px, transparent 1px 8px);
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@utility float-slow { animation: float-slow 6s ease-in-out infinite; }
